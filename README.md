@@ -103,30 +103,38 @@ Main backend files include `backend/src/routes/runs.js`,
 `backend/src/services/runService.js`,
 `backend/src/services/storeBrain.js`, and `backend/src/db/schema.sql`.
 
-## 6. Customer/demand model and Store Brain
+## 5. Customer/Demand Model and Store Brain
 
-### Customer and demand model
+### Customer and Demand Model
 
-The simulation generates customer activity and sales over the simulated
-days, then records customers, transactions, units sold, revenue, cost of
-goods sold, and gross profit in the daily reports.
+The customer model generates daily shopping activity using weighted random selection.
 
+Customer volume: 58 customers on weekdays and 42 on weekends, with approximately ±20% daily variation.
+
+Customer types: Commuters (35%), local residents (25%), office workers (25%), and visitors (15%).
+
+Shopping missions: Quick convenience (35%), meal purchase (30%), and small grocery trip (35%).
+
+Basket generation: Mission-specific category weights and relative product popularity influence product selection. Each selected product has a requested quantity of 1–2 units.
+
+The model uses programmed assumptions rather than real supermarket sales data. Actual sales depend on product availability and checkout processing.
 
 ### Store Brain
 
-The Store Brain service includes start-of-day replenishment receipt and
-expiry processing, and end-of-day stock inspection and replenishment
-decisions. The database event schema supports events such as low stock,
-sold out, expiry warning, expiry write-off, slow-moving stock,
-replenishment ordered/received, and cash constraint.
+The Store Brain autonomously manages inventory and replenishment through backend/src/services/storeBrain.js.
 
-The replenishment order schema enforces a one-day expected delivery
-relationship (`expected_delivery_day = order_day + 1`). Commercial
-Assurance checks the lead-time rule, inventory reconciliation, cash
-reconciliation, and that orders are received and not placed on or after
-Day 60.
+Start of day: Receives previous-day replenishment orders and processes expired inventory.
 
-## 7. Application report navigation
+Stock monitoring: Detects low stock, stockouts, approaching expiry, and slow-moving products.
+
+Replenishment: Uses recent sales to estimate demand, targets four days of stock, and applies a two-day low-stock threshold with a minimum reorder threshold of two units.
+
+Cash constraints: Limits orders to quantities affordable with available operating cash.
+
+Delivery rules: Orders are scheduled for next-day delivery, with no new orders placed on Day 60.
+
+
+## 6. Application report navigation
 
 The main dashboard is rendered by `frontend/src/App.tsx`. The intended
 report areas are:
@@ -144,7 +152,7 @@ report areas are:
     evidence.
 7.  **Product Catalogue** --- catalogue information.
 
-## 8. Commercial Assurance
+## 7. Commercial Assurance
 
 The assurance endpoint checks whether:
 
@@ -159,7 +167,7 @@ The assurance endpoint checks whether:
 - No orders are placed on or after Day 60.
 - All replenishment orders have been received.
 
-## 9. AI collaboration
+## 8. AI collaboration
 
 AI assistance was used during development to help explain implementation
 issues, code review, write sql tables/queries, css designs, html layouts, recommend file structures and prepare documentation.
@@ -172,7 +180,7 @@ Examples of AI-assisted work and human review:
 - **Documentation:** AI drafted document was reviewed and changed significantly. It was treated
   as a template rather than an actual draft.
 
-## 10. Known technical and modelling limitations
+## 9. Known technical and modelling limitations
 
 - This is a simulation, not a real-world supermarket forecasting
   system. Results depend on the implemented rules and assumptions.
@@ -181,4 +189,3 @@ Examples of AI-assisted work and human review:
   implementation.
 - This is a single page application and all components are displayed in the dashboard.
   This can cause the page to be too long.
-
