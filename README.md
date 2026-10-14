@@ -133,7 +133,6 @@ Cash constraints: Limits orders to quantities affordable with available operatin
 
 Delivery rules: Orders are scheduled for next-day delivery, with no new orders placed on Day 60.
 
-
 ## 6. Application report navigation
 
 The main dashboard is rendered by `frontend/src/App.tsx`. The intended
@@ -143,11 +142,11 @@ report areas are:
     dashboard.
 2.  **Business Performance** --- business metrics, shopper activity,
     categories, and product performance.
-3.  **Daily Reports** --- select a day to inspect its recorded results.
-4.  **Inventory & Autonomous Operations** --- inventory movement,
-    replenishment and Store Brain events.
-5.  **Commercial Diagnosis & Recommendations** --- evidence-based
+3.  **Commercial Diagnosis & Recommendations** --- evidence-based
     findings and suggested actions.
+4.  **Daily Reports** --- select a day to inspect its recorded results.
+5.  **Inventory & Autonomous Operations** --- inventory movement,
+    replenishment and Store Brain events.
 6.  **Commercial Assurance** --- validation checks and reconciliation
     evidence.
 7.  **Product Catalogue** --- catalogue information.
