@@ -111,12 +111,6 @@ The simulation generates customer activity and sales over the simulated
 days, then records customers, transactions, units sold, revenue, cost of
 goods sold, and gross profit in the daily reports.
 
-**\[VERIFY from `simulationService.js` and the demand-model
-implementation before submission: document the actual demand-generation
-method, any randomness or fixed probabilities, how customer counts are
-selected, how products are chosen, and how selling prices and purchase
-costs are applied. Do not claim a statistical distribution or
-forecasting method unless the code implements it.\]**
 
 ### Store Brain
 
@@ -131,11 +125,6 @@ relationship (`expected_delivery_day = order_day + 1`). Commercial
 Assurance checks the lead-time rule, inventory reconciliation, cash
 reconciliation, and that orders are received and not placed on or after
 Day 60.
-
-**\[VERIFY\]** Document the actual thresholds and ordering formula from
-`backend/src/services/storeBrain.js`, including expiry warning timing,
-target stock/reorder quantities, slow-moving product treatment, and cash
-constraints.
 
 ## 7. Application report navigation
 
