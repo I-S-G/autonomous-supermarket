@@ -31,14 +31,6 @@ build/
 .eslintcache
 *.tsbuildinfo
 
-# SQLite database files
-data/*.db
-data/*.db-*
-*.sqlite
-*.sqlite3
-*.sqlite-shm
-*.sqlite-wal
-
 # Temporary files
 tmp/
 temp/
